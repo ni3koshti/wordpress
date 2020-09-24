@@ -1,0 +1,8 @@
+---
+# vars file for wordpress_docker
+wordpress_docker:  
+   mysql_version: 5.7
+   mysql_root_password: wordpress
+   mysql_wordpress_password: wordpress
+   wordpress_version: latest
+

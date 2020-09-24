@@ -1,0 +1,29 @@
+---
+# tasks file for wordpress_docker
+- name :  Wordpress Installation 
+  hosts: master
+  remote_user: root
+  gather_facts: no
+  vars_files:
+    - vars/myvars.yml
+  tasks: 
+    - name: Create docker/wordpress directory
+      file:
+        path: /root/project1/wordpress
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+
+    - name: Copy Docker-compose file
+      template:
+        src: templates/docker-compose.yml.j2
+        dest: /root/project1/wordpress/docker-compose.yaml
+        owner: root
+        group: root
+        mode: 0755
+   
+    - name: Excute Docker-Compose
+      shell: docker-compose up -d
+      args:
+        chdir: /root/project1/wordpress/
